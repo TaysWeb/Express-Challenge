@@ -1,32 +1,18 @@
-const express = require('express')
-const app = express();
-const port = process.env.PORT || 8000 ;
+// only the db has to be configured
+ const mysql = require('mysql');
 
-const router = require("../config/")
-
-require('dotenv').config();
-
-
-//middleware
-app.use(express.json()) ;
-app.use(cors());
-
-app.get( '/', (req, res) => {
-    res.sendFile('index.html');
-});
-app.get( '/', (req, res) => {
-    res.sendFile('<html><body><h4>hi there little human! </h4></body></html>');
-})
-//route
-
-app.get('/users', (req,res) => {
-        res.send(users);
+const myDB = mysql.createPool({
+    port : process.env.DB_PORT,
+    host: process.env.DB_HOST ,
+    user : process.env.DB_USER,
+    password : process.env.DB_PASS, 
+    database : process.env.DB_NAME
 });
 
+myDB.getConnection(function(err){
+  if (err) {
+  console.log('connected Successful!')
+  } else throw(err) 
+});
 
-//route
-app.use("/", router);
-
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
+module.exports = myDB ;
