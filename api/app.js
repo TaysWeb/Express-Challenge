@@ -20,7 +20,7 @@ require('dotenv').config();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) ;
 app.use(cors());
-// app.use('products', productRoute)
+
 
 app.get( '/', (req, res) => {
     res.send('hii');
@@ -28,10 +28,10 @@ app.get( '/', (req, res) => {
 
 
 //my routes which i'm using
-app.use('/all', routes);
-app.use('/users', routes);
-app.use('/orders', routes);
-app.use('/books', routes);
+app.use('/all',() => routes);
+app.use('/users', () => user);
+app.use('/orders', () => orders);
+app.use('/books', () =>  books);
 
 
 app.listen(process.env.APP_PORT, () => {
