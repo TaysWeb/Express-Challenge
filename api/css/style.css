@@ -1,3 +1,7 @@
+.container {
+  padding-left: 100px;
+
+}
 .login {
     color: #000;
     text-transform: uppercase;

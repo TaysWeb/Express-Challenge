@@ -24,6 +24,7 @@ app.use(express.json()) ;
 app.use(cors());
 // this next line will show my html page
 app.use('/api',express.static(path.join(__dirname , '/html')));
+app.use('/api', express.static( path.join( './css/style.css')));
 
 app.get( '/api', (req, res) => {
     res.json({
