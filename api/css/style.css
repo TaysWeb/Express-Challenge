@@ -1,6 +1,7 @@
 .container {
+  align-content: center;
   padding-left: 100px;
-
+  width:300px;
 }
 .login {
     color: #000;

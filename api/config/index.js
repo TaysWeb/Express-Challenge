@@ -1,5 +1,6 @@
 // only the db has to be configured
 
+
 const mysql = require('mysql');
 
 const myDB = mysql.createPool({
@@ -7,14 +8,13 @@ const myDB = mysql.createPool({
     host: process.env.DB_HOST ,
     user : process.env.DB_USER,
     password : process.env.DB_PASS, 
-    database : process.env.DB_NAME,
-    connectionLimit : 10
+    database : process.env.DB_NAME
 });
 
-myDB.getConnection(function(err){
-  if (err) {
-  console.log('connected Successful!')
-  } else throw(err) 
-});
+// myDB.getConnection((err) => {
+//   if (!err) {
+//   console.log('connected Successful!')
+//   } else throw(err) 
+// });
 
 module.exports = myDB ;

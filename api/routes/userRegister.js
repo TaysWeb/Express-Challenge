@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const nodemailer = require('nodemailer') ;
 const express = require('express');
 const User = require('./userRoute')
 
@@ -21,3 +20,5 @@ router.post('/api/register' , async (res, req) => {
             res.status(500).json({error: 'An Error occurred'});
           }
 });
+
+module.exports = User;
