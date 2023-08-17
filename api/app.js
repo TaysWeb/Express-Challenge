@@ -10,7 +10,7 @@ const routes = require('./routes/routing');
 const books = require('./routes/bookRoute');
 const user = require('./routes/userRoute');
 const orders = require('./routes/orderRoute');
-
+// const control = require('./Model/userModel');
 
 // adding my database
 const myDb = require('./config/index') ;
@@ -19,7 +19,7 @@ require('dotenv').config();
 
 
 //middleware
-app.use(express.urlencoded({extended: false})); //this decodes my html form
+app.use(express.urlencoded({extended: true})); //this decodes my html form
 app.use(express.json()) ;
 app.use(cors());
 
@@ -30,8 +30,11 @@ app.use('/api', express.static( path.join( './css/style.css')));
 app.get( '/api/', (req, res) => {
       res.sendFile('./html/index.html');
 })
-app.use('/api/users', (req,res) => {
-res.json( user);
+// app.use('/api/users', (req,res) => {
+// res.json( user);
+// })
+app.use('/api/users/register', (req,res) => {
+    res.json(routes);
 })
 
 
@@ -42,7 +45,7 @@ app.use((req,res) => {
 })
 
 //my routes which i'm using
-app.use('/api',() => routes);
+// app.use('/api/users/register',routes);
 
 // app.use('/orders', () => orders);
 // app.use('/books', () =>  books);

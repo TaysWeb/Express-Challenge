@@ -1,6 +1,4 @@
 // only the db has to be configured
-
-
 const mysql = require('mysql');
 
 const myDB = mysql.createPool({
@@ -11,10 +9,11 @@ const myDB = mysql.createPool({
     database : process.env.DB_NAME
 });
 
-// myDB.getConnection((err) => {
-//   if (!err) {
-//   console.log('connected Successful!')
-//   } else throw(err) 
-// });
+myDB.getConnection((err) => {
+  if (!err) {
+     return err ;
+  } 
+  console.log("connected successful")
+});
 
 module.exports = myDB ;

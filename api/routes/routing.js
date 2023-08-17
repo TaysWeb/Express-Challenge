@@ -1,13 +1,18 @@
-const express = require('express');
-const router = express.Router();
+module.exports = app => {
+    const userRoute = require('../Model/userModel');
+    
+    const router =  require('express').Router();
+    const control = require('../controllers/user_controller');
+// const express = require('express');
+// const router = express.Router();
 
-const connection = require('../config/index');
+// const connection = require('../config/index');
 
 
 
 // //all the get HTTP methods
 
-// router.get('/api/users' ,function(res, req ) {
+
 //    var query = 'select userID, firstName, LastName, gender, userDOB, emailAdd, userPass, profileUrl from users ';
 //    connection.query(query, function(err, data){
 //        if (err) {
@@ -24,17 +29,29 @@ const connection = require('../config/index');
 
 
 //registering a new user
-router.post('/api/register' , function(res, req)  {
-        let user = req.body;
-       let query = "INSERT INTO users (userID, firstName, LastName, gender, userDOB, emailAdd, userPass, profileUrl) VALUES ('?', '?',' ?', '?', '?', '?', '?', '?')";
-        connection.query = (query, (err,result)=> {
-            if (err) {
-                res.json({message : err });
-            } else {
-                res.json({message : result }); 
-            }
-        });
-});
+// router.post('/api/users/register' , function(res, req)  {
+ 
+//        let query = "INSERT INTO users SET ?";
+//        let postData = {
+//           userId : req.body.id,
+//           FirstName : req.body.FirstName,
+//           LastName: req.body.LastName,
+//           gender : req.body.gender,
+//           userDOB : req.body.userDOB,
+//           emailAdd : req.body.emailAdd,
+//           userPass : req.body.userPass,
+//           ProfileUrl : req.body.ProfileUrl
+
+//        };
+//         connection.query = (query, postData, (err,result)=> {
+//             if (err) {
+//                 res.json({message : err });
+//             } else {
+//                 console.log('1 record added');
+//             }
+//         });
+// });
+router.post('/api/users/register', control.create);
 
  module.exports = router;
 
@@ -55,4 +72,6 @@ router.post('/api/register' , function(res, req)  {
 //     )
 //   }
 
-// };
+
+
+};
